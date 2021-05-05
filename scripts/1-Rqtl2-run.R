@@ -350,11 +350,8 @@ library (RSQLite)
   
   
 ####################################################
-## Export all QTL with LOD scores > 6 and all genes in QTL intervals
+## Export genes
 ####################################################
-
-qtl_gmap <- find_peaks(scans, map = control$gmap, threshold = 6, peakdrop = 1.8, drop = 1.5, expand2markers = FALSE)
-qtl_gmap
 
 write_xlsx(list("GSH chrX" = KidneyGSH_Genes_MGI_chrX, 
                 "TotalGSH chrX" = KidneyTotalGSH_Genes_MGI_chrX,
@@ -366,8 +363,10 @@ write_xlsx(list("GSH chrX" = KidneyGSH_Genes_MGI_chrX,
 
 
 ####################################################
-## Export all QTL with LOD scores > 6 and all genes in QTL intervals
+## Export all QTL with LOD scores > 6 
 ####################################################
+
+scans <- cbind(qtlscan_KidneyGSH, qtlscan_KidneyGSSG, qtlscan_KidneyTotalGSH, qtlscan_KidneyGSH_GSSGRatio, qtlscan_KidneyRedoxPotentialGSSG2GSH, qtlscan_BUN)
 
 qtl_gmap <- find_peaks(scans, map = control$gmap, threshold = 6, peakdrop = 1.8, drop = 1.5, expand2markers = FALSE)
 qtl_pmap <- find_peaks(scans, map = control$pmap, threshold = 6, peakdrop = 1.8, drop = 1.5, expand2markers = FALSE)
